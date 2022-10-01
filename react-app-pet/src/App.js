@@ -1,8 +1,11 @@
 import React from 'react'
-import './css/App.scss'
+import PetCadastro from './components/PetCadastro'
+import './style/App.scss'
 
 export default function App() {
   return (
-    <div>App</div>
+    <div className='container'>
+      <PetCadastro/>
+    </div>
   )
 }
