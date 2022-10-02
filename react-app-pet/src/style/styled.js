@@ -100,6 +100,10 @@ export const Form = styled.div`
 
 export const Botao = styled.button`
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     background-color: hsl(216, 57%, 50%);
     width: 20vw;
     color: #FFF;
@@ -115,5 +119,69 @@ export const Botao = styled.button`
     }
     &:active{
         background-color: hsl(216, 57%, 30%);
+        transform: scale(0.95);
+    }
+`
+
+export const BotaoCancelar = styled.button`
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: hsl(0, 57%, 50%);
+    color: #FFF;
+    width: 15vw;
+    font-size: 16px;
+    padding: 13px 8px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px rgba(0,0,0,.39);
+    transition-duration: 0.3s;
+    &:hover{
+        background-color: hsl(0, 57%, 40%);
+        cursor: pointer;
+    }
+    &:active{
+        background-color: hsl(0, 57%, 30%);
+        transform: scale(0.95);
+    }
+`
+
+export const Card = styled.div`
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    width: auto;
+    min-height: 520px;
+    min-width: 250px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        img {
+            width: 200px;
+            height: 200px;
+            border-radius: 100%;
+            border: 5px solid rgba(0,0,0,0.1);
+            position: relative;
+            transition-duration: 0.3s;
+            /* left: 50%; */
+            /* transform: translate(-50%, -50%); */
+        }
+        *{
+            margin: 0;
+
+        }
     }
 `

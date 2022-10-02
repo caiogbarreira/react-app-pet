@@ -1,7 +1,8 @@
 import React from 'react'
-import { CardForm, Form, Botao } from '../style/styled'
-import { IoPaw } from 'react-icons/io5'
-import { GrFormUpload } from 'react-icons/gr'
+import { CardForm, Form, Botao, Card, BotaoCancelar } from '../style/styled'
+import { IoPaw, IoClose } from 'react-icons/io5'
+import { GrClose } from 'react-icons/gr'
+import { AiOutlineClose } from 'react-icons/ai'
 import noImage from '../imgs/no-image.png'
 
 export default function PetCadastro() {
@@ -37,13 +38,12 @@ export default function PetCadastro() {
     setPet(defaultArray)
   }
 
-
   return (
     <>
       <CardForm>
         <Form>
           <div>
-            <label className="imagem" for="imagem">
+            <label className="imagem" htmlFor="imagem">
               <div>
                 <img src={pet.imagem} alt="Foto do Pet" />
                 Clique para alterar a imagem
@@ -53,47 +53,46 @@ export default function PetCadastro() {
           </div>
 
           <div>
-            <label for="nomeDono">Nome do Dono</label>
-            <input type="text" id="nomeDono" name="nomeDono" placeholder='Jubileu' value={pet.nomeDono} onChange={(e) => {handleChange(e)}}/>          
-          </div>
-
-          <div>
-            <label for="telefone">Número de Telefone</label>
-            <input type="text" id="telefone" name="telefone" placeholder='(11) 99123-4567' value={pet.telefone} onChange={(e) => {handleChange(e)}}/>          
-          </div>
-
-          <div>
-            <label for="nome">Nome do Pet</label>
-            <input type="text" id="nome" name="nome" placeholder='Catchorro' value={pet.nome} onChange={(e) => {handleChange(e)}}/>          
+            <label htmlFor="nome">Nome do Pet</label>
+            <input type="text" id="nome" name="nome" placeholder='...' value={pet.nome} onChange={(e) => {handleChange(e)}}/>          
           </div>
 
           <div className="input-grid">
             <div>
-              <label for="idade">Idade do Pet (em anos)</label>
-              <input type="number" id="idade" name="idade" placeholder='0' value={pet.idade} onChange={(e) => {handleChange(e)}}/>          
+              <label htmlFor="idade">Idade do Pet (em anos)</label>
+              <input type="number" id="idade" name="idade" placeholder='...' value={pet.idade} onChange={(e) => {handleChange(e)}}/>          
             </div>
 
             <div>
-              <label for="tamanho">Tamanho do Pet (em cm)</label>
-              <input type="number" id="tamanho" name="tamanho" placeholder='2' value={pet.tamanho} onChange={(e) => {handleChange(e)}}/>          
+              <label htmlFor="tamanho">Tamanho do Pet (em cm)</label>
+              <input type="number" id="tamanho" name="tamanho" placeholder='...' value={pet.tamanho} onChange={(e) => {handleChange(e)}}/>          
             </div>
 
             <div>
-              <label for="raca">Raça do Pet</label>
-              <input type="text" id="raca" name="raca" placeholder='Qualquer um' value={pet.raca} onChange={(e) => {handleChange(e)}}/>          
+              <label htmlFor="raca">Raça do Pet</label>
+              <input type="text" id="raca" name="raca" placeholder='...' value={pet.raca} onChange={(e) => {handleChange(e)}}/>          
             </div>
           </div>
 
+          <div>
+            <label htmlFor="nomeDono">Nome do Dono</label>
+            <input type="text" id="nomeDono" name="nomeDono" placeholder='...' value={pet.nomeDono} onChange={(e) => {handleChange(e)}}/>          
+          </div>
+
+          <div>
+            <label htmlFor="telefone">Número de Telefone</label>
+            <input type="text" id="telefone" name="telefone" placeholder='...' value={pet.telefone} onChange={(e) => {handleChange(e)}}/>          
+          </div>
           
 
           <div>
-            <label for="observacoes">Descrição:</label>
+            <label htmlFor="observacoes">Observações:</label>
             <textarea
               id="observacoes"
               name="observacoes"
               cols="30"
               rows="10"
-              placeholder="Observação"
+              placeholder="..."
               value={pet.observacoes}
               onChange={(e) => {handleChange(e)}}
             ></textarea>
@@ -101,6 +100,54 @@ export default function PetCadastro() {
           <Botao type='submit' onClick={handleSubmit}><IoPaw/> Cadastrar Pet</Botao>
         </Form>
       </CardForm>
+
+      {pets.length === 0 ? <></> : <>
+        <hr />
+        <h1>Fichas de Pets</h1>
+      </>}
+      <div className="card-grid">
+        {pets.map((pet, index) => {
+          return <>
+            <Card key={index}>
+              <div>
+                <img src={pet.imagem} alt="Foto do Pet" />
+              </div>
+              <div>
+                <h2>{pet.nome}</h2>
+                <p>
+                  <strong>Idade: </strong>
+                  {pet.idade} anos
+                </p>
+                <p>
+                  <strong>Tamanho: </strong>
+                  {pet.tamanho} cm
+                </p>
+                <p>
+                  <strong>Raça: </strong>
+                  {pet.raca}
+                </p>
+                <p>
+                  <strong>Nome do Dono: </strong>
+                  {pet.nomeDono}
+                </p>
+                <p>
+                  <strong>Telefone: </strong>
+                  {pet.telefone}
+                </p>
+                <p>
+                  <strong>Observações: </strong>
+                  {pet.observacoes}
+                </p>
+              </div>
+
+              <BotaoCancelar onClick={(e) => {
+                const newPets = pets.filter((pet, i) => i !== index)
+                setPets(newPets)
+              }}>Remover</BotaoCancelar>
+            </Card>
+          </>
+        })}
+      </div>
     </>
   )
 }
